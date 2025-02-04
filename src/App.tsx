@@ -1,4 +1,15 @@
+import { useEffect, useRef, useState } from "react";
+import User from "./components/User";
+
 function App() {
+
+  const count = useRef<number>(0);
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    count.current += 1;
+    console.log(count);
+  }, [])
 
   let name: string;
   // Union in TS
@@ -23,7 +34,7 @@ function App() {
     breed: "Mammoth",
     sound: "rumble",
     age: 43
-  }  
+  }
 
   console.log(animal.breed);
 
@@ -35,13 +46,13 @@ function App() {
 
   // let printName : Function;
 
-  let printName: (firstName: string ) => void
+  let printName: (firstName: string) => void
   printName = (firstName: string) => {
     console.log(firstName)
   }
 
   printName("New Name");
-  
+
   interface Anime {
     name: string;
     isRecommended?: boolean;
@@ -79,32 +90,37 @@ function App() {
   isStudent = false;
   hobbies = ["coding", "music", "football"]
 
-  let person : Person = {
+  let person: Person = {
     name: "Khushuu",
     age: 23
   }
 
-  let multiplePersons : Person[];
+  let multiplePersons: Person[];
 
   multiplePersons = [
-    {name: 'Naruto', age: 12},
-    {name: 'Sasuke', age:13},
-    {name: 'Sakura', age:13}
+    { name: 'Naruto', age: 12 },
+    { name: 'Sasuke', age: 13 },
+    { name: 'Sakura', age: 13 }
   ]
 
   console.log(person.name)
-  
+
   const user = {
     name: "Khushboo Chaudhary",
     location: "Boisar",
     Age: 23,
   }
   console.log(user.location);
-  
+
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <>
+      <h1>Render Count: {counter}</h1>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
+      <button onClick={() => setCounter(counter + 1)}>Increment</button>
+      <User name="Khushu" age={23} isMarried={false} />
+    </>
   )
 }
 
